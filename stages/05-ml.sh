@@ -176,6 +176,13 @@ elif [[ "$CUDA_VERSION" == "11.7.0" ]]; then
         torchaudio \
         --extra-index-url https://download.pytorch.org/whl/cu117
 
+elif [[ "$CUDA_VERSION" == "11.8.0" ]]; then
+    pip3 install --no-cache-dir \
+        torch \
+        torchvision \
+        torchaudio \
+        --extra-index-url https://download.pytorch.org/whl/cu118
+
 else
     pip3 install --no-cache-dir \
         torch \
@@ -212,6 +219,10 @@ elif [[ "$CUDA_VERSION" == "11.6.0" ]]; then
 elif [[ "$CUDA_VERSION" == "11.7.0" ]]; then
     pip3 install --no-cache-dir cupy-cuda117 $CUPY_REPO
     # python3 -m cupyx.tools.install_library --cuda 11.7 --library cutensor
+
+elif [[ "$CUDA_VERSION" == "11.8.0" ]]; then
+    pip3 install --no-cache-dir cupy-cuda11x $CUPY_REPO
+    # python3 -m cupyx.tools.install_library --cuda 11.8 --library cutensor
 
 else
     echo "Installing cupy without specify the CUDA version, it will compile it..."
@@ -261,6 +272,17 @@ else
                         torch-spline-conv \
                         torch-geometric \
                         -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
+
+      elif [[ "$CUDA_VERSION" == "11.8.0" ]]; then
+            echo "PyG for 11.8 is not available yet."
+            # pip3 install --no-cache-dir \
+            #             pyg-lib \
+            #             torch-scatter \
+            #             torch-sparse \
+            #             torch-cluster \
+            #             torch-spline-conv \
+            #             torch-geometric \
+            #             -f https://data.pyg.org/whl/torch-1.13.0+cu117.html
 
       else
             export LIBRARY_PATH="/usr/local/cuda/lib64:${LIBRARY_PATH}"
